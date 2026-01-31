@@ -42,7 +42,6 @@ if __name__ == "__main__":
     imp_parser.add_argument("url")
 
     subparsers.add_parser("youtube")
-    subparsers.add_parser("vpn")
 
     docker_parser = subparsers.add_parser("docker")
     docker_parser.add_argument("action", choices=["stopall"])
@@ -91,15 +90,6 @@ if __name__ == "__main__":
         )
     elif cmd == "youtube":
         subprocess.run(["./main.pl"], cwd=os.path.expanduser("~/projects/yt-offline"))
-    elif cmd == "vpn":
-        subprocess.run(
-            [
-                "sudo",
-                "openvpn",
-                "--config",
-                os.path.expanduser("~/vpn/mullvad_pl_all.conf"),
-            ]
-        )
     elif cmd == "docker":
         if args.action == "stopall":
             result = subprocess.run(

@@ -1,3 +1,3 @@
 # Instalation
 
-Run `python install.py` and add `eval "$(register-python-argcomplete adm)"` to .zshrc
+Run `python install.py` and add `eval "$(register-python-argcomplete a)"` to .zshrc
