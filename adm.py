@@ -47,6 +47,8 @@ if __name__ == "__main__":
     docker_parser = subparsers.add_parser("docker")
     docker_parser.add_argument("action", choices=["stopall"])
 
+    subparsers.add_parser("color-pallete")
+
     argcomplete.autocomplete(parser)
     args = parser.parse_args()
     cmd = args.command
@@ -134,5 +136,12 @@ if __name__ == "__main__":
         print()
         ask_to_continue()
         subprocess.run(command)
+    elif cmd == "color-pallete":
+        for i in range(256):
+            print(f"\x1b[48;5;0m\x1b[38;5;{i}m{i:3d}", end="")
+            print(f"\x1b[48;5;{i}m{i:3d}\x1b[38;5;0m", end="")
+            if i == 15 or (i > 15 and (i - 15) % 12 == 0):
+                print("\x1b[48;5;0m")
+        pass
     else:
         print("Invalid command", file=sys.stderr)
